@@ -35,11 +35,8 @@ for USERNAME in "$@"; do
     chown -R "$USERNAME:$USERNAME" "$HOMEDIR"
     
     # sätt rättigheter så bara ägaren kommer åt mappen
-    chmod 700 "$HOMEDIR"
-    chmod 700 "$homedir/Documents"
-    chmod 700 "$homedir/Downloads"
-    chmod 700 "$homedir/Work"
-    
+    chmod -R 700 "$HOMEDIR"
+
     # sätt välkomstfil med lista på andra användare
     echo "Välkommen $USERNAME" > "$WELCOMEFILE"
     echo "" >> "$WELCOMEFILE"
