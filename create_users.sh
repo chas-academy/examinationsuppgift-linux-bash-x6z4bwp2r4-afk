@@ -19,7 +19,7 @@ fi
 for USERNAME in "$@"; do
     echo "Skapar $USERNAME..."
 
-    # skapa användaren memd hemkatalog
+    # skapa användaren med hemkatalog
     useradd -m "$USERNAME"
 
     HOMEDIR="/home/$USERNAME"
@@ -31,7 +31,7 @@ for USERNAME in "$@"; do
     mkdir -p "$HOMEDIR/Downloads"
     mkdir -p "$HOMEDIR/Work"
 
-    # ge användaren äganderätt over sin hemkatalog
+    # ge användaren äganderätt över sin hemkatalog
     chown -R "$USERNAME:$USERNAME" "$HOMEDIR"
     
     # sätt rättigheter så bara ägaren kommer åt mappen
