@@ -35,13 +35,19 @@ for USERNAME in "$@"; do
     chown -R "$USERNAME:$USERNAME" "$HOMEDIR"
     
     # sätt rättigheter så bara ägaren kommer åt mappen
-    chmod -R 700 "$HOMEDIR"
+    chmod 700 "$HOMEDIR"
+    chmod 700 "$homedir/Documents"
+    chmod 700 "$homedir/Downloads"
+    chmod 700 "$homedir/Work"
     
     # sätt välkomstfil med lista på andra användare
     echo "Välkommen $USERNAME" > "$WELCOMEFILE"
     echo "" >> "$WELCOMEFILE"
     echo "Andra användare:" >> "$WELCOMEFILE"
     awk -F: '$3 >= 1000 {print $1}' /etc/passwd | grep -v "$USERNAME" >> "$WELCOMEFILE"
+
+    # ge welcome.txt läsrättigheter så alla kan läsa den
+    chmod 644 "$WELCOMEFILE"
 
     echo "$USERNAME är klar!"
 
